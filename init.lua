@@ -541,7 +541,6 @@ require('lazy').setup({
       local servers = {
         -- clangd = {},
         -- gopls = {},
-        -- pyright = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -552,6 +551,7 @@ require('lazy').setup({
         -- tsserver = {},
         --
 
+        -- Lua
         lua_ls = {
           -- cmd = {...},
           -- filetypes = { ...},
@@ -566,6 +566,11 @@ require('lazy').setup({
             },
           },
         },
+
+        -- Python
+        pyright = {},
+        black = {},
+        isort = {},
       }
 
       -- Ensure the servers and tools above are installed
@@ -627,7 +632,7 @@ require('lazy').setup({
       formatters_by_ft = {
         lua = { 'stylua' },
         -- Conform can also run multiple formatters sequentially
-        -- python = { "isort", "black" },
+        python = { 'isort', 'black' },
         --
         -- You can use a sub-list to tell conform to run *until* a formatter
         -- is found.
@@ -810,7 +815,7 @@ require('lazy').setup({
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     opts = {
-      ensure_installed = { 'bash', 'c', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc' },
+      ensure_installed = { 'bash', 'c', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc', 'python' },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
