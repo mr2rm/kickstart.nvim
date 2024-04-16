@@ -84,11 +84,12 @@ I hope you enjoy your Neovim journey,
 P.S. You can delete this when you're done too. It's your config now! :)
 --]]
 
+-- NOTE: Hijack `netrw` in favor of `neo-tree`
 -- Disable netrw at the very start of your init.lua
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
--- Optionally enable 24-bit colour
+-- Enable 24-bit colour
 vim.opt.termguicolors = true
 
 -- Set <space> as the leader key
