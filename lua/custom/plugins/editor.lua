@@ -18,11 +18,11 @@ return {
         desc = '[T]oggle E[x]plorer',
       },
       {
-        '<leader>xc',
+        '<leader>xf',
         function()
           require('neo-tree.command').execute { reveal = true }
         end,
-        desc = 'E[x]plore [C]urrent File',
+        desc = 'E[x]plore Current [F]ile',
       },
       {
         '<leader>xg',
@@ -74,6 +74,26 @@ return {
               end,
               desc = 'Open with System Application',
             },
+          },
+        },
+        default_component_configs = {
+          indent = {
+            -- expander config, needed for nesting files
+            with_expanders = true, -- if nil and file nesting is enabled, will enable expanders
+            expander_collapsed = '',
+            expander_expanded = '',
+            expander_highlight = 'NeoTreeExpander',
+          },
+        },
+        event_handlers = {
+          { -- Auto close sidebar when file opened
+            event = 'file_opened',
+            handler = function(file_path)
+              -- auto close
+              -- vimc.cmd("Neotree close")
+              -- OR
+              require('neo-tree.command').execute { action = 'close' }
+            end,
           },
         },
       }
