@@ -273,3 +273,57 @@ sudo dnf install -y gcc make git ripgrep fd-find neovim
 ```
 </details>
 
+## TODO
+
+### NeoTree
+
+[ ] Remove cursor
+[ ] Preview files without opening them
+[ ] Add more padding
+[ ] Remove hiding after opening a file?
+[ ] Focus on sidebar when it's toggled
+
+### Treesitter
+
+[ ] Configure textobjects
+
+### Telescope
+
+[ ] Change theme to dropdown
+[ ] Integrate with git
+[ ] Review configurations
+
+### Neovim Setup
+
+[ ] Install Neovim from PPA instead of snap
+[ ] Improve Neovim desktop launcher or delete it?
+[ ] Enable hotkey in Kitty
+[ ] Configure Kitty
+[ ] Vexplore and Sexplore in Neovim
+
+### Plugins
+
+[ ] Refactor configuration structure
+[ ] Check other useful plugins on LazyVim
+[ ] Add preview for markdown
+[ ] Configure gitsigns to have better styling
+[ ] Copilot
+[ ] Add notification manager to see errors
+[ ] NeoTree vs. NvimTree
+[ ] Install diffview
+[ ] Cmdline
+[ ] Harpoon
+[ ] Bufferline
+[ ] Lualine
+[ ] Manage windows (resize, etc.)
+[ ] Folding
+
+### Git
+
+[ ] Conventional commits
+[ ] Lazygit vs. Neogit
+[ ] Show active branch
+
+### Python
+
+[ ] Setup Python virtualenv
