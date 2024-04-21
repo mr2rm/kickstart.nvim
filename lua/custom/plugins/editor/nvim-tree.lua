@@ -37,12 +37,15 @@ return { -- File Tree
         adaptive_size = true,
       },
       renderer = {
+        highlight_git = 'all',
+        highlight_diagnostics = 'all',
+        highlight_modified = 'all',
+        highlight_bookmarks = 'all',
         indent_markers = {
           enable = true,
         },
         icons = {
           git_placement = 'after',
-          diagnostics_placement = 'after',
         },
       },
       filters = {
