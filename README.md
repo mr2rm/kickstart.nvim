@@ -289,9 +289,9 @@ sudo dnf install -y gcc make git ripgrep fd-find neovim
 - [x] Remove cursor
 - [x] Preview files without opening them
 - [ ] Add more padding
-- [ ] ~Remove hiding after opening a file~
+- [x] ~Remove hiding after opening a file~
 - [x] Focus on sidebar when it's toggled
-- [ ] Enable hightlighting
+- [x] Enable hightlighting
 
 ### Treesitter
 
@@ -300,7 +300,7 @@ sudo dnf install -y gcc make git ripgrep fd-find neovim
 ### Telescope
 
 - [ ] Change theme to dropdown
-- [ ] Integrate with git
+- [x] Integrate with git
 - [ ] Review configurations
 
 ### Neovim Setup
@@ -319,19 +319,20 @@ sudo dnf install -y gcc make git ripgrep fd-find neovim
 - [ ] Copilot
 - [ ] Add notification manager to see errors
 - [x] NeoTree vs. NvimTree
-- [ ] Cmdline
+- [x] Cmdline
 - [ ] Harpoon
 - [ ] Bufferline
 - [ ] Lualine
 - [ ] Manage windows (resize, etc.)
 - [ ] Folding
 - [ ] Auto save?
+- [ ] Toggleterm (for Lazygit?, Lazydocker, terminal management)
 
 ### Git
 
-- [ ] Conventional commits
-- [ ] Lazygit vs. Neogit
-- [ ] Show active branch
+- [x] Conventional commits
+- [x] Lazygit vs. Neogit
+- [x] Show active branch
 - [ ] Configure gitsigns to have better styling
 - [ ] Install diffview
 
