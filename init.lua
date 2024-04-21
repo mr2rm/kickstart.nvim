@@ -372,6 +372,8 @@ require('lazy').setup({
       -- Enable Telescope extensions if they are installed
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
+      pcall(require('telescope').load_extension, 'noice')
+      pcall(require('telescope').load_extension, 'lazygit')
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
@@ -907,6 +909,7 @@ require('lazy').setup({
   { import = 'custom.plugins.coding' },
   { import = 'custom.plugins.languages' },
   { import = 'custom.plugins.utils' },
+  { import = 'custom.plugins.ui' },
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the

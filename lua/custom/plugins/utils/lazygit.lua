@@ -26,8 +26,6 @@ return {
       },
     },
     config = function()
-      require('telescope').load_extension 'lazygit'
-
       -- That makes sure that any opened buffer which is contained in a git
       -- repo will be tracked.
       vim.api.nvim_create_autocmd('BufEnter', {
