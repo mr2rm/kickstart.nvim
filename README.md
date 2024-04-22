@@ -317,7 +317,7 @@ sudo dnf install -y gcc make git ripgrep fd-find neovim
 - [ ] Check other useful plugins on LazyVim
 - [ ] Add preview for markdown
 - [ ] Copilot
-- [ ] Add notification manager to see errors
+- [x] Add notification manager to see errors
 - [x] NeoTree vs. NvimTree
 - [x] Cmdline
 - [ ] Harpoon
@@ -335,6 +335,8 @@ sudo dnf install -y gcc make git ripgrep fd-find neovim
 - [x] Show active branch
 - [ ] Configure gitsigns to have better styling
 - [ ] Install diffview
+- [ ] Open/Edit from directly from Neovim
+- [ ] Close LazyGit by Esc
 
 ### Python
 
