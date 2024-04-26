@@ -9,17 +9,17 @@ return { -- File Tree
     {
       '<leader>tt',
       '<cmd>NvimTreeToggle<cr>',
-      desc = 'File [T]ree: [T]oggle',
+      desc = '[T]oggle',
     },
     {
       '<leader>tf',
       '<cmd>NvimTreeFindFile<cr>',
-      desc = 'File [T]ree: Find Current [F]ile',
+      desc = 'Current [F]ile',
     },
     {
       '<leader>tb',
       '<cmd>NvimTreeCollapseKeepBuffers<cr>',
-      desc = 'File [T]ree: Show [B]uffers',
+      desc = '[B]uffers',
     },
   },
   config = function()
