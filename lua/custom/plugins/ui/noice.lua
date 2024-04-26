@@ -11,12 +11,12 @@ return {
           ['cmp.entry.get_documentation'] = true, -- requires hrsh7th/nvim-cmp
         },
         progress = {
-          throttle = 500,
+          throttle = 1000 / 3,
         },
       },
       -- you can enable a preset for easier configuration
       presets = {
-        bottom_search = true, -- use a classic bottom cmdline for search
+        bottom_search = false, -- use a classic bottom cmdline for search
         command_palette = true, -- position the cmdline and popupmenu together
         long_message_to_split = true, -- long messages will be sent to a split
         inc_rename = true, -- enables an input dialog for inc-rename.nvim
@@ -35,7 +35,13 @@ return {
       -- OPTIONAL:
       --   `nvim-notify` is only needed, if you want to use the notification view.
       --   If not available, we use `mini` as the fallback
-      'rcarriga/nvim-notify',
+      {
+        'rcarriga/nvim-notify',
+        opts = {
+          timeout = 3000,
+          top_down = false,
+        },
+      },
     },
     keys = {
       {
@@ -51,28 +57,28 @@ return {
         function()
           require('noice').cmd 'last'
         end,
-        desc = 'Noice Last Message',
+        desc = '[L]ast Message',
       },
       {
         '<leader>nh',
         function()
           require('noice').cmd 'history'
         end,
-        desc = 'Noice History',
+        desc = '[H]istory',
       },
       {
         '<leader>na',
         function()
           require('noice').cmd 'all'
         end,
-        desc = 'Noice All',
+        desc = 'Show [A]ll',
       },
       {
         '<leader>nd',
         function()
           require('noice').cmd 'dismiss'
         end,
-        desc = 'Dismiss All',
+        desc = '[D]ismiss All',
       },
       {
         '<c-f>',
