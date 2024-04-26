@@ -16,9 +16,9 @@ return {
     -- setting the keybinding for LazyGit with 'keys' is recommended in
     -- order to load the plugin when the command is run for the first time
     keys = {
-      { '<leader>lg', '<cmd>LazyGit<cr>', desc = '[L]azy[G]it' },
+      { '<leader>gl', '<cmd>LazyGit<cr>', desc = '[L]azyGit' },
       {
-        '<leader>slg',
+        '<leader>sgl',
         function()
           require('telescope').extensions.lazygit.lazygit()
         end,
@@ -28,6 +28,9 @@ return {
     config = function()
       -- That makes sure that any opened buffer which is contained in a git
       -- repo will be tracked.
+      -- TODO: On directory changes it doesn's work. Also in opening a new buffer.
+      --  Repository should be updated in Lazygit as well. I used LazyGitCurrentFile
+      --  To load new repository.
       vim.api.nvim_create_autocmd('BufEnter', {
         desc = 'Load repository path',
         pattern = '*',
