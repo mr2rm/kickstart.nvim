@@ -562,6 +562,11 @@ require('lazy').setup({
       --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
+
+      -- NOTE: To display LSP status on statusline
+      -- TODO: Replace it with newer version of Trouble
+      local lsp_status = require 'lsp-status'
+
       local servers = {
         -- clangd = {},
         -- gopls = {},
@@ -589,18 +594,30 @@ require('lazy').setup({
               -- diagnostics = { disable = { 'missing-fields' } },
             },
           },
+          on_attach = lsp_status.on_attach,
+          capabilities = lsp_status.capabilities,
         },
 
         -- Python
-        pyright = {},
+        pyright = {
+          on_attach = lsp_status.on_attach,
+          capabilities = lsp_status.capabilities,
+        },
+        -- TODO: Replace them with Ruff later on
         black = {},
         isort = {},
 
         -- Java
-        jdtls = {},
+        jdtls = {
+          on_attach = lsp_status.on_attach,
+          capabilities = lsp_status.capabilities,
+        },
 
         -- Markdown
-        markdownlint = {},
+        markdownlint = {
+          on_attach = lsp_status.on_attach,
+          capabilities = lsp_status.capabilities,
+        },
 
         -- Others
         prettier = {},
@@ -918,6 +935,7 @@ require('lazy').setup({
   --    For additional information, see `:help lazy.nvim-lazy.nvim-structuring-your-plugins`
   { import = 'custom.plugins' },
   { import = 'custom.plugins.editor' },
+  { import = 'custom.plugins.lsp' },
   { import = 'custom.plugins.coding' },
   { import = 'custom.plugins.languages' },
   { import = 'custom.plugins.utils' },
