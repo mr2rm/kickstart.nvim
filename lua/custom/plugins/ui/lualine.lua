@@ -57,15 +57,6 @@ return {
             { 'branch', fmt = trunc(nil, 25, nil, false) },
           },
           lualine_c = {
-            -- {
-            --   'diagnostics',
-            --   symbols = {
-            --     error = ' ',
-            --     warn = ' ',
-            --     info = ' ',
-            --     hint = ' ',
-            --   },
-            -- },
             { 'filetype', icon_only = true, separator = '', padding = { left = 1, right = 0 } },
             { 'filename', path = 4 },
             {
@@ -116,6 +107,15 @@ return {
           -- TODO: Venv selector has extension for lualine but didn't work
           lualine_y = {
             "require('lsp-status').status()",
+            {
+              'diagnostics',
+              symbols = {
+                error = ' ',
+                warn = ' ',
+                info = ' ',
+                hint = ' ',
+              },
+            },
             {
               get_active_venv,
               icon = '',

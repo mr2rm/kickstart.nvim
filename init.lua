@@ -446,6 +446,10 @@ require('lazy').setup({
       -- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
       -- used for completion, annotations and signatures of Neovim apis
       { 'folke/neodev.nvim', opts = {} },
+
+      -- Show LSP status on statusline
+      -- TODO: Replace it with newer version of Trouble
+      { 'nvim-lua/lsp-status.nvim' },
     },
     config = function()
       -- Brief aside: **What is LSP?**
@@ -566,11 +570,7 @@ require('lazy').setup({
       --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
-
-      -- NOTE: To display LSP status on statusline
-      -- TODO: Replace it with newer version of Trouble
       local lsp_status = require 'lsp-status'
-
       local servers = {
         -- clangd = {},
         -- gopls = {},
@@ -733,10 +733,14 @@ require('lazy').setup({
       --  into multiple repos for maintenance purposes.
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
+
+      -- Add kind symbol to completion items
+      'onsails/lspkind.nvim',
     },
     config = function()
       -- See `:help cmp`
       local cmp = require 'cmp'
+      local lspkind = require 'lspkind'
       local luasnip = require 'luasnip'
       luasnip.config.setup {}
 
@@ -804,6 +808,9 @@ require('lazy').setup({
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
           { name = 'path' },
+        },
+        formatting = {
+          format = lspkind.cmp_format(),
         },
       }
     end,
