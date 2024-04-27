@@ -300,7 +300,7 @@ sudo dnf install -y gcc make git ripgrep fd-find neovim
 ### Telescope
 
 - [ ] Change theme to dropdown
-- [x] Integrate with git
+- [ ] Integrate with git (add some shortcuts)
 - [ ] Review configurations
 
 ### Neovim Setup
@@ -316,28 +316,32 @@ sudo dnf install -y gcc make git ripgrep fd-find neovim
 - [x] Refactor configuration structure
 - [ ] Check other useful plugins on LazyVim
 - [ ] Add preview for markdown
-- [ ] Copilot
+- [x] Copilot
 - [x] Add notification manager to see errors
 - [x] NeoTree vs. NvimTree
 - [x] Cmdline
 - [ ] Harpoon
-- [ ] Bufferline
-- [ ] Lualine
+- [x] ~Bufferline~
+- [x] Lualine
 - [ ] Manage windows (resize, etc.)
-- [ ] Folding
+- [x] Folding
 - [ ] Auto save?
 - [ ] Toggleterm (for Lazygit?, Lazydocker, terminal management)
+- [ ] Trouble
 
 ### Git
 
 - [x] Conventional commits
-- [x] Lazygit vs. Neogit
+- [ ] Lazygit vs. Neogit vs. Fugitive
+  - Lazygit: distraction, laggish/slow, via terminal, open/edit file, separate configuration, conventional commits
+  - Neogit: like Fugitive for Vim
+  - Fugitive: well-known but in Vimscript
 - [x] Show active branch
-- [ ] Configure gitsigns to have better styling
+- [x] Configure gitsigns to have better styling
 - [ ] Install diffview
-- [ ] Open/Edit from directly from Neovim
-- [ ] Close LazyGit by Esc
+- [x] Open/Edit from directly from Neovim
+- [x] Close LazyGit by Esc
 
 ### Python
 
-- [ ] Setup Python virtualenv
+- [x] Setup Python virtualenv
