@@ -16,13 +16,13 @@ return {
     -- setting the keybinding for LazyGit with 'keys' is recommended in
     -- order to load the plugin when the command is run for the first time
     keys = {
-      { '<leader>gl', '<cmd>LazyGit<cr>', desc = '[L]azyGit' },
+      { '<leader>glg', '<cmd>LazyGit<cr>', desc = 'Lazy[G]it' },
       {
-        '<leader>sgl',
+        '<leader>gls',
         function()
           require('telescope').extensions.lazygit.lazygit()
         end,
-        desc = '[S]earch [L]azy[G]it Repository',
+        desc = '[S]earch Repository',
       },
     },
     config = function()
