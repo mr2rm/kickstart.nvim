@@ -734,8 +734,8 @@ require('lazy').setup({
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
 
-      -- Add kind symbol to completion items
-      'onsails/lspkind.nvim',
+      -- Integration with Copilot and add it as a source
+      'zbirenbaum/copilot-cmp',
     },
     config = function()
       -- See `:help cmp`
@@ -808,9 +808,12 @@ require('lazy').setup({
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
           { name = 'path' },
+          { name = 'copilot', group_index = 1, priority = 100 },
         },
         formatting = {
-          format = lspkind.cmp_format(),
+          format = lspkind.cmp_format {
+            symbol_map = { Copilot = '' },
+          },
         },
       }
     end,
