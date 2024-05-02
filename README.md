@@ -341,6 +341,7 @@ sudo dnf install -y gcc make git ripgrep fd-find neovim
 - [ ] Install diffview
 - [x] Open/Edit from directly from Neovim
 - [x] Close LazyGit by Esc
+- [ ] Blame multiple lines / history of lines
 
 ### Python
 
