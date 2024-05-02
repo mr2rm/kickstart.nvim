@@ -56,6 +56,12 @@ return { -- File Tree
           close = true,
         },
       },
+      -- TODO: Review other available options for actions
+      actions = {
+        open_file = {
+          quit_on_open = true,
+        },
+      },
     }
   end,
 }
