@@ -48,7 +48,7 @@ return {
       vim.o.laststatus = vim.g.lualine_laststatus
 
       return {
-        options = { theme = 'tokyonight' },
+        options = { theme = 'tokyonight', globalstatus = true },
         extensions = { 'nvim-tree', 'lazy' },
         -- TODO: Manage sections on lesswidth
         sections = {
