@@ -623,6 +623,12 @@ require('lazy').setup({
           capabilities = lsp_status.capabilities,
         },
 
+        -- YAML
+        yamlls = {
+          on_attach = lsp_status.on_attach,
+          capabilities = lsp_status.capabilities,
+        },
+
         -- Others
         prettier = {},
       }
@@ -693,6 +699,7 @@ require('lazy').setup({
         -- javascript = { { "prettierd", "prettier" } },
 
         markdown = { 'prettier' },
+        yaml = { 'prettier' },
       },
     },
   },
@@ -886,7 +893,22 @@ require('lazy').setup({
     },
     build = ':TSUpdate',
     opts = {
-      ensure_installed = { 'bash', 'c', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'vim', 'vimdoc', 'python', 'java', 'regex', 'dockerfile' },
+      ensure_installed = {
+        'bash',
+        'c',
+        'html',
+        'lua',
+        'luadoc',
+        'markdown',
+        'markdown_inline',
+        'vim',
+        'vimdoc',
+        'python',
+        'java',
+        'regex',
+        'dockerfile',
+        'yaml',
+      },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
