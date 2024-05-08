@@ -328,6 +328,7 @@ sudo dnf install -y gcc make git ripgrep fd-find neovim
 - [ ] Auto save?
 - [ ] Toggleterm (for Lazygit?, Lazydocker, terminal management)
 - [ ] Trouble
+- [ ] CopilotChat
 
 ### Git
 
@@ -346,3 +347,8 @@ sudo dnf install -y gcc make git ripgrep fd-find neovim
 ### Python
 
 - [x] Setup Python virtualenv
+
+### Auto-completion
+
+- [ ] Put Copilot auto-completion to the bottom
+- [ ] <C-space> triggers incremental selection
