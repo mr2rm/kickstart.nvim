@@ -604,12 +604,30 @@ require('lazy').setup({
 
         -- Python
         pyright = {
+          settings = {
+            pyright = {
+              -- Using Ruff's import organizer
+              disableOrganizeImports = true,
+            },
+          },
           on_attach = lsp_status.on_attach,
-          capabilities = lsp_status.capabilities,
+          capabilities = {
+            unpack(lsp_status.capabilities),
+            textDocument = {
+              publishDiagnostics = {
+                tagSupport = {
+                  valueSet = { 2 },
+                },
+              },
+            },
+          },
         },
-        -- TODO: Replace them with Ruff later on
-        black = {},
-        isort = {},
+        ruff = { -- LSP/Linter/Formatter for Python (replacement for black, isort, etc.)
+          on_attach = function(client, _)
+            -- Disable hover in favor of Pyright
+            client.server_capabilities.hoverProvider = false
+          end,
+        },
 
         -- Java
         jdtls = {
@@ -692,7 +710,7 @@ require('lazy').setup({
       formatters_by_ft = {
         lua = { 'stylua' },
         -- Conform can also run multiple formatters sequentially
-        python = { 'isort', 'black' },
+        python = { 'ruff_fix', 'ruff_format' },
         --
         -- You can use a sub-list to tell conform to run *until* a formatter
         -- is found.
@@ -700,6 +718,11 @@ require('lazy').setup({
 
         markdown = { 'prettier' },
         yaml = { 'prettier' },
+      },
+      formatters = {
+        ruff_fix = {
+          prepend_args = { '--select', 'I' },
+        },
       },
     },
   },
@@ -908,6 +931,7 @@ require('lazy').setup({
         'regex',
         'dockerfile',
         'yaml',
+        'toml',
       },
       -- Autoinstall languages that are not installed
       auto_install = true,
