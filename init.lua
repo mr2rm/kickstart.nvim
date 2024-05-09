@@ -635,20 +635,21 @@ require('lazy').setup({
           capabilities = lsp_status.capabilities,
         },
 
+        -- Docker
+        dockerls = {
+          on_attach = lsp_status.on_attach,
+          capabilities = lsp_status.capabilities,
+        },
+        docker_compose_language_service = {
+          on_attach = lsp_status.on_attach,
+          capabilities = lsp_status.capabilities,
+        },
+
         -- Markdown
-        markdownlint = {
+        marksman = {
           on_attach = lsp_status.on_attach,
           capabilities = lsp_status.capabilities,
         },
-
-        -- YAML
-        yamlls = {
-          on_attach = lsp_status.on_attach,
-          capabilities = lsp_status.capabilities,
-        },
-
-        -- Others
-        prettier = {},
       }
 
       -- Ensure the servers and tools above are installed
@@ -664,6 +665,9 @@ require('lazy').setup({
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
+        'hadolint', -- Linter for Dockerfile
+        'markdownlint', -- Linter/Formatter for Markdown
+        'prettier', -- Formatter for YAML, Markdown, JSON, HTML, CSS, JS, and etc.
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -716,11 +720,12 @@ require('lazy').setup({
         -- is found.
         -- javascript = { { "prettierd", "prettier" } },
 
-        markdown = { 'prettier' },
+        markdown = { { 'markdownlint', 'prettier' } },
         yaml = { 'prettier' },
       },
       formatters = {
         ruff_fix = {
+          -- Only organize imports
           prepend_args = { '--select', 'I' },
         },
       },
