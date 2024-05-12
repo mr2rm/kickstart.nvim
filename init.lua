@@ -84,6 +84,8 @@ I hope you enjoy your Neovim journey,
 P.S. You can delete this when you're done too. It's your config now! :)
 --]]
 
+vim.g.LazyFile = { 'BufReadPost', 'BufWritePost', 'BufNewFile' }
+
 -- NOTE: Hijack `netrw` in favor of `neo-tree`
 -- Disable netrw at the very start of your init.lua
 vim.g.loaded_netrw = 1
@@ -246,7 +248,7 @@ require('lazy').setup({
   --    require('Comment').setup({})
 
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
+  { 'numToStr/Comment.nvim', event = 'VeryLazy', opts = {} },
 
   -- Here is a more advanced example where we pass configuration
   -- options to `gitsigns.nvim`. This is equivalent to the following Lua:
@@ -295,7 +297,7 @@ require('lazy').setup({
         ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
         ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
         ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
-        ['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore', h = { '[H]unk' }, l = { '[L]azygit' } },
+        ['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore', h = { '[H]unk' } },
         ['<leader>n'] = { name = '[N]otification', _ = 'which_key_ignore' },
         ['<leader>v'] = { name = '[V]env', _ = 'which_key_ignore' },
         ['<leader>t'] = { name = 'File [T]ree', _ = 'which_key_ignore' },
@@ -688,7 +690,8 @@ require('lazy').setup({
 
   { -- Autoformat
     'stevearc/conform.nvim',
-    lazy = false,
+    event = { 'BufWritePre' },
+    cmd = { 'ConformInfo' },
     keys = {
       {
         '<leader>f',
@@ -720,12 +723,12 @@ require('lazy').setup({
         -- is found.
         -- javascript = { { "prettierd", "prettier" } },
 
-        markdown = { { 'markdownlint', 'prettier' } },
+        markdown = { 'prettier' },
         yaml = { 'prettier' },
       },
       formatters = {
         ruff_fix = {
-          -- Only organize imports
+          -- Organize imports anyway
           prepend_args = { '--select', 'I' },
         },
       },
@@ -873,10 +876,16 @@ require('lazy').setup({
   },
 
   -- Highlight todo, notes, etc in comments
-  { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
+  {
+    'folke/todo-comments.nvim',
+    event = vim.g.LazyFile,
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    opts = { signs = false },
+  },
 
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',
+    event = 'VeryLazy',
     config = function()
       -- Better Around/Inside textobjects
       --

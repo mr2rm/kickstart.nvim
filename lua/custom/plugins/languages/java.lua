@@ -4,5 +4,6 @@
 return {
   { -- LSP Configuration
     'mfussenegger/nvim-jdtls',
+    ft = { 'java' },
   },
 }

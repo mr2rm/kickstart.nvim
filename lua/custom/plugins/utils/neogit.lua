@@ -10,6 +10,7 @@ return {
       'nvim-telescope/telescope.nvim', -- optional
       -- 'ibhagwan/fzf-lua', -- optional
     },
+    cmd = 'Neogit',
     config = true,
     opts = {
       graph_style = 'unicode',
