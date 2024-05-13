@@ -728,8 +728,8 @@ require('lazy').setup({
       },
       formatters = {
         ruff_fix = {
-          -- Organize imports anyway
-          prepend_args = { '--select', 'I' },
+          -- Always orgnize imports
+          prepend_args = { '--extend-select', 'I' },
         },
       },
     },
