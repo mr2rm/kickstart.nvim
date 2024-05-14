@@ -3,12 +3,15 @@
 --- return function that can format the component accordingly
 local function trunc(trunc_width, trunc_len, hide_width, no_ellipsis)
   return function(str)
+    -- Hide
     local win_width = vim.fn.winwidth(0)
     if hide_width and win_width < hide_width then
       return ''
     end
-    -- runcate
+    -- Truncate
+    -- Length of string is greater than `trunc_len`
     if trunc_len and #str > trunc_len then
+      -- Window width is smaller than `trunc_width`
       if trunc_width == nil or win_width < trunc_width then
         return str:sub(1, trunc_len) .. (no_ellipsis and '' or '...')
       end
@@ -50,15 +53,10 @@ return {
       return {
         options = { theme = 'tokyonight', globalstatus = true },
         extensions = { 'nvim-tree', 'lazy' },
-        -- TODO: Manage sections on lesswidth
         sections = {
           lualine_a = { 'mode' },
           lualine_b = {
-            { 'branch', fmt = trunc(nil, 25, nil, false) },
-          },
-          lualine_c = {
-            { 'filetype', icon_only = true, separator = '', padding = { left = 1, right = 0 } },
-            { 'filename', path = 4 },
+            { 'branch', fmt = trunc(nil, 20, nil, false) },
             {
               'diff',
               symbols = {
@@ -77,6 +75,10 @@ return {
                 end
               end,
             },
+          },
+          lualine_c = {
+            { 'filetype', icon_only = true, separator = '', padding = { left = 1, right = 0 }, fmt = trunc(nil, 20, 100, false) },
+            { 'filename', fmt = trunc(nil, 20, 100, false) },
           },
           lualine_x = {
             {
@@ -102,11 +104,10 @@ return {
               cond = require('lazy.status').has_updates,
             },
           },
-          -- NOTE: This section needs improvements
-          -- TODO: Use Trouble instead of lsp-status
-          -- TODO: Venv selector has extension for lualine but didn't work
+          -- NOTE: This section needs some improvements
           lualine_y = {
-            "require('lsp-status').status()",
+            -- TODO: Use Trouble instead of lsp-status
+            { "require('lsp-status').status()", fmt = trunc(nil, nil, 100, false) },
             {
               'diagnostics',
               symbols = {
@@ -116,6 +117,7 @@ return {
                 hint = ' ',
               },
             },
+            -- TODO: Venv selector has extension for lualine but didn't work
             {
               get_active_venv,
               icon = '',
@@ -123,6 +125,7 @@ return {
               cond = function()
                 return get_active_venv() ~= nil
               end,
+              fmt = trunc(nil, 10, 100, false),
             },
           },
           lualine_z = {
