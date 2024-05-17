@@ -125,7 +125,7 @@ return {
               cond = function()
                 return get_active_venv() ~= nil
               end,
-              fmt = trunc(nil, 10, 100, false),
+              fmt = trunc(nil, 15, 100, false),
             },
           },
           lualine_z = {
