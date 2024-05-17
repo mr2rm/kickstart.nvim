@@ -572,9 +572,12 @@ require('lazy').setup({
       --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
+
       local lsp_status = require 'lsp-status'
+      -- NOTE: For running servers in containers you can follow this guide:
+      --  https://github.com/neovim/nvim-lspconfig/wiki/Running-language-servers-in-containers
+
       local servers = {
-        -- clangd = {},
         -- gopls = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
@@ -636,6 +639,16 @@ require('lazy').setup({
           on_attach = lsp_status.on_attach,
           capabilities = lsp_status.capabilities,
         },
+
+        -- C/C++
+        clangd = {
+          on_attach = lsp_status.on_attach,
+          capabilities = {
+            unpack(lsp_status.capabilities),
+            offsetEncoding = { 'utf-16' },
+          },
+        },
+        ['clang-format'] = {},
 
         -- Docker
         dockerls = {
@@ -725,6 +738,7 @@ require('lazy').setup({
 
         markdown = { 'prettier' },
         yaml = { 'prettier' },
+        cpp = { 'clang_format' },
       },
       formatters = {
         ruff_fix = {
@@ -946,6 +960,7 @@ require('lazy').setup({
         'dockerfile',
         'yaml',
         'toml',
+        'cpp',
       },
       -- Autoinstall languages that are not installed
       auto_install = true,
