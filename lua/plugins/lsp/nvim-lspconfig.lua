@@ -19,7 +19,7 @@ return {
 
       -- Show LSP status on statusline
       -- TODO: Replace it with newer version of Trouble
-      { 'nvim-lua/lsp-status.nvim' },
+      'nvim-lua/lsp-status.nvim',
     },
     config = function()
       -- Brief aside: **What is LSP?**
@@ -203,10 +203,8 @@ return {
         },
 
         -- Java
-        jdtls = {
-          on_attach = lsp_status.on_attach,
-          capabilities = lsp_status.capabilities,
-        },
+        -- NOTE: Configuration for Java is handled by nvim-jdtls
+        jdtls = {},
 
         -- C/C++
         clangd = {
@@ -216,6 +214,7 @@ return {
             offsetEncoding = { 'utf-16' },
           },
         },
+        -- TODO: Move it to other tools list
         ['clang-format'] = {},
 
         -- Docker
@@ -257,6 +256,11 @@ return {
       require('mason-lspconfig').setup {
         handlers = {
           function(server_name)
+            -- Should be configured by nvim-jdtls
+            if server_name == 'jdtls' then
+              return
+            end
+
             local server = servers[server_name] or {}
             -- This handles overriding only values explicitly passed
             -- by the server configuration above. Useful when disabling
