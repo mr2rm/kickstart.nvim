@@ -309,7 +309,6 @@ require('lazy').setup({
   { import = 'plugins.colorscheme' },
   { import = 'plugins.editor' },
   { import = 'plugins.formatting' },
-  { import = 'plugins.languages' },
   { import = 'plugins.linting' },
   { import = 'plugins.lsp' },
   { import = 'plugins.misc' },
