@@ -34,8 +34,10 @@ return {
         -- is found.
         -- javascript = { { "prettierd", "prettier" } },
 
+        -- Use built-in formatter in yamlls for YAML files
+        -- yaml = { 'prettier' },
+
         markdown = { 'prettier' },
-        yaml = { 'prettier' },
         cpp = { 'clang_format' },
       },
       formatters = {

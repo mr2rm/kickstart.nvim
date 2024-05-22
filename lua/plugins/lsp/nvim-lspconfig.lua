@@ -214,8 +214,6 @@ return {
             offsetEncoding = { 'utf-16' },
           },
         },
-        -- TODO: Move it to other tools list
-        ['clang-format'] = {},
 
         -- Docker
         dockerls = {
@@ -231,6 +229,40 @@ return {
         marksman = {
           on_attach = lsp_status.on_attach,
           capabilities = lsp_status.capabilities,
+        },
+
+        -- YAML
+        yamlls = {
+          on_attach = function(client)
+            -- It didn't work in the capabilities table!
+            client.server_capabilities.documentFormattingProvider = true
+            lsp_status.on_attach(client)
+          end,
+          capabilities = {
+            unpack(lsp_status.capabilities),
+            textDocument = {
+              foldingRange = {
+                dynamicRegistration = false,
+                lineFoldingOnly = true,
+              },
+            },
+          },
+          settings = {
+            redhat = { telemetry = { enabled = false } },
+            yaml = {
+              keyOrdering = false,
+              -- Chose built-in formatter of LSP over prettier
+              format = {
+                enable = true,
+              },
+              validate = true,
+              -- I could use SchemaStore.nvim alternatively. It allows disabling
+              --  schema stores if you don't need them.
+              schemaStore = {
+                enable = true,
+              },
+            },
+          },
         },
       }
 
@@ -250,6 +282,7 @@ return {
         'hadolint', -- Linter for Dockerfile
         'markdownlint', -- Linter/Formatter for Markdown
         'prettier', -- Formatter for YAML, Markdown, JSON, HTML, CSS, JS, and etc.
+        'clang-format', -- Formatter for C/C++, Java, JS, JSON, Protobuf, and etc.
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
