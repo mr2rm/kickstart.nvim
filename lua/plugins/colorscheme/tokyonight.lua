@@ -15,5 +15,13 @@ return {
       -- You can configure highlights by doing something like:
       vim.cmd.hi 'Comment gui=none'
     end,
+    opts = {
+      -- NOTE: Make TokyoNight transparent
+      -- transparent = true,
+      -- styles = {
+      --   sidebars = 'transparent',
+      --   floats = 'transparent',
+      -- },
+    },
   },
 }

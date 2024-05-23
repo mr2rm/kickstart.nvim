@@ -20,6 +20,13 @@ return {
       -- Show LSP status on statusline
       -- TODO: Replace it with newer version of Trouble
       'nvim-lua/lsp-status.nvim',
+
+      -- Load JSON schemas for yamlls
+      {
+        'b0o/SchemaStore.nvim',
+        lazy = true,
+        version = false, -- last release is way too old
+      },
     },
     config = function()
       -- Brief aside: **What is LSP?**
@@ -141,9 +148,10 @@ return {
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
 
-      local lsp_status = require 'lsp-status'
       -- NOTE: For running servers in containers you can follow this guide:
       --  https://github.com/neovim/nvim-lspconfig/wiki/Running-language-servers-in-containers
+
+      local lsp_status = require 'lsp-status'
 
       local servers = {
         -- gopls = {},
@@ -234,7 +242,7 @@ return {
         -- YAML
         yamlls = {
           on_attach = function(client)
-            -- It didn't work in the capabilities table!
+            -- Did not work in the capabilities table!
             client.server_capabilities.documentFormattingProvider = true
             lsp_status.on_attach(client)
           end,
@@ -247,19 +255,43 @@ return {
               },
             },
           },
+          -- Lazy-load schema store when needed
+          on_new_config = function(new_config)
+            local schemas = {
+              kubernetes = { 'k8s*.yaml', 'k8s*/**/*.yaml', 'kube*.yaml', 'kube*/**/*.yaml' },
+            }
+            local schemastore_schemas = require('schemastore').yaml.schemas {
+              select = {
+                'kustomization.yaml',
+                'gitlab-ci',
+                'docker-compose.yml',
+                'Helm Chart.yaml',
+              },
+              -- extra = {
+              --     {
+              --       description = 'Kubernetes JSON Schema',
+              --       fileMatch = { 'k8s*.yaml', 'k8s*/**/*.yaml', 'kube*.yaml', 'kube*/**/*.yaml' },
+              --       name = 'kubernetes',
+              --       url = 'https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.28.8/all.json',
+              --     },
+              -- },
+            }
+            new_config.settings.yaml.schemas = vim.tbl_deep_extend('force', schemas, schemastore_schemas)
+          end,
           settings = {
-            redhat = { telemetry = { enabled = false } },
             yaml = {
-              keyOrdering = false,
+              validate = true,
+              hover = true,
+              completion = true,
               -- Chose built-in formatter of LSP over prettier
               format = {
                 enable = true,
               },
-              validate = true,
-              -- I could use SchemaStore.nvim alternatively. It allows disabling
-              --  schema stores if you don't need them.
               schemaStore = {
-                enable = true,
+                -- Disable built-in schemaStore support to use schemas from SchemaStore.nvim plugin
+                enable = false,
+                -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
+                url = '',
               },
             },
           },
