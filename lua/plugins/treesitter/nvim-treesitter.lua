@@ -9,6 +9,7 @@ return {
       ensure_installed = {
         'bash',
         'c',
+        'cpp',
         'html',
         'lua',
         'luadoc',
@@ -18,11 +19,11 @@ return {
         'vimdoc',
         'python',
         'java',
-        'regex',
-        'dockerfile',
         'yaml',
+        'json',
+        'dockerfile',
+        'regex',
         'toml',
-        'cpp',
       },
       -- Autoinstall languages that are not installed
       auto_install = true,
