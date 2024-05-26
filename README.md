@@ -175,6 +175,7 @@ return {
   - This includes your existing init.lua and the neovim files in `~/.local`
     which can be deleted with `rm -rf ~/.local/share/nvim/`
 - Can I keep my existing configuration in parallel to kickstart?
+
   - Yes! You can use [NVIM_APPNAME](https://neovim.io/doc/user/starting.html#%24NVIM_APPNAME)`=nvim-NAME`
     to maintain multiple configurations. For example, you can install the kickstart
     configuration in `~/.config/nvim-kickstart` and create an alias:
@@ -187,6 +188,7 @@ return {
     config directory and the matching local directory
     `~/.local/share/nvim-kickstart`. You can apply this approach to any Neovim
     distribution that you would like to try out.
+
 - What if I want to "uninstall" this configuration:
   - See [lazy.nvim uninstall](https://github.com/folke/lazy.nvim#-uninstalling) information
 - Why is the kickstart `init.lua` a single file? Wouldn't it make sense to split it into multiple files?
@@ -297,7 +299,8 @@ sudo dnf install -y gcc make git ripgrep fd-find neovim
 
 ### Treesitter
 
-- [ ] Configure textobjects
+- [x] Configure textobjects
+- [ ] Configure context
 
 ### Telescope
 
@@ -307,17 +310,16 @@ sudo dnf install -y gcc make git ripgrep fd-find neovim
 
 ### Neovim Setup
 
-- [ ] Install Neovim from PPA instead of snap
-- [ ] Improve Neovim desktop launcher or delete it?
-- [ ] Enable hotkey in Kitty
-- [ ] Configure Kitty
-- [ ] Vexplore and Sexplore in Neovim
+- [x] Install Neovim from PPA instead of snap
+- [x] Improve Neovim desktop launcher or delete it
+- [x] Enable hotkey in Kitty
+- [x] Configure Kitty
+- [x] ~Vexplore and Sexplore in Neovim~
 
 ### Plugins
 
 - [x] Refactor configuration structure
 - [ ] Check other useful plugins on LazyVim
-- [ ] Add preview for markdown
 - [x] Copilot
 - [x] Add notification manager to see errors
 - [x] NeoTree vs. NvimTree
@@ -329,7 +331,7 @@ sudo dnf install -y gcc make git ripgrep fd-find neovim
 - [x] Folding
 - [ ] Auto save?
 - [ ] Toggleterm (for Lazygit?, Lazydocker, terminal management)
-- [ ] Trouble
+- [ ] Trouble (waiting for version 3)
 - [ ] CopilotChat
 - [ ] DAP (remotly)
 - [ ] Neotest (remotely)
@@ -337,13 +339,13 @@ sudo dnf install -y gcc make git ripgrep fd-find neovim
 ### Git
 
 - [x] Conventional commits
-- [ ] Lazygit vs. Neogit vs. Fugitive
+- [x] Lazygit vs. Neogit vs. Fugitive
   - Lazygit: distraction, laggish/slow, via terminal, open/edit file, separate configuration, conventional commits
   - Neogit: like Fugitive for Vim
   - Fugitive: well-known but in Vimscript
 - [x] Show active branch
 - [x] Configure gitsigns to have better styling
-- [ ] Install diffview
+- [ ] Configure diffview
 - [x] Open/Edit from directly from Neovim
 - [x] Close LazyGit by Esc
 - [ ] Blame multiple lines / history of lines
@@ -359,5 +361,5 @@ sudo dnf install -y gcc make git ripgrep fd-find neovim
 
 ### Auto-completion
 
-- [ ] Put Copilot auto-completion to the bottom
-- [ ] <C-space> triggers incremental selection
+- [ ] Put Copilot auto-completion to the bottom?
+- [ ] <C-space> triggers incremental selection (doesn't work in Mac)
