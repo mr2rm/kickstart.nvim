@@ -2,7 +2,10 @@ return {
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     dependencies = {
+      -- Treesitter + textobjects
       { 'nvim-treesitter/nvim-treesitter-textobjects' },
+      -- Show your current context
+      { 'nvim-treesitter/nvim-treesitter-context' },
     },
     build = ':TSUpdate',
     opts = {
@@ -60,9 +63,6 @@ return {
 
       ---@diagnostic disable-next-line: missing-fields
       require('nvim-treesitter.configs').setup(opts)
-
-      --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
-      --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
     end,
   },
 }
