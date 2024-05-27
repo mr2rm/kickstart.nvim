@@ -313,7 +313,6 @@ require('lazy').setup({
   --    For additional information, see `:help lazy.nvim-lazy.nvim-structuring-your-plugins`
   { import = 'plugins' },
   { import = 'plugins.coding' },
-  { import = 'plugins.colorscheme' },
   { import = 'plugins.editor' },
   { import = 'plugins.formatting' },
   { import = 'plugins.linting' },
