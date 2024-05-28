@@ -300,7 +300,7 @@ sudo dnf install -y gcc make git ripgrep fd-find neovim
 ### Treesitter
 
 - [x] Configure textobjects
-- [ ] Configure context
+- [x] Configure context
 
 ### Telescope
 
@@ -335,6 +335,7 @@ sudo dnf install -y gcc make git ripgrep fd-find neovim
 - [ ] CopilotChat
 - [ ] DAP (remotly)
 - [ ] Neotest (remotely)
+- [ ] Refactoring
 
 ### Git
 
@@ -356,7 +357,7 @@ sudo dnf install -y gcc make git ripgrep fd-find neovim
 
 ### Markdown
 
-- [ ] Live preview in browser
+- [x] Live preview in browser
 - [ ] Show with style (headlines)
 
 ### Auto-completion
