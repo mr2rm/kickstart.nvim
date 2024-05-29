@@ -1,3 +1,4 @@
+-- TODO: Show file in file tree
 return {
   { -- Fuzzy Finder (files, lsp, etc)
     --  TODO: How <M-q> keymap works in Telescope?
