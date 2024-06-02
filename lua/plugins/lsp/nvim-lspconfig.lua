@@ -3,7 +3,12 @@ return {
     'neovim/nvim-lspconfig',
     dependencies = {
       -- Automatically install LSPs and related tools to stdpath for Neovim
-      'williamboman/mason.nvim',
+      {
+        'williamboman/mason.nvim',
+        opts = {
+          ui = { border = 'rounded' },
+        },
+      },
       'williamboman/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
@@ -335,6 +340,8 @@ return {
           end,
         },
       }
+
+      require('lspconfig.ui.windows').default_options.border = 'rounded'
     end,
   },
 }
