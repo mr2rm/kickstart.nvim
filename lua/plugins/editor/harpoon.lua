@@ -7,6 +7,11 @@ return {
       'nvim-lua/plenary.nvim',
       'nvim-telescope/telescope.nvim',
     },
+    opts = {
+      settings = {
+        save_on_toggle = true,
+      },
+    },
     config = function()
       local harpoon = require 'harpoon'
       harpoon:setup {}
@@ -31,16 +36,16 @@ return {
             previewer = conf.file_previewer {},
             sorter = conf.generic_sorter {},
             attach_mappings = function(prompt_bufnr, map)
-              -- Set keymap for removing file from Harpoon
-              -- TODO: The description is <anonymous>
-              map('i', '<C-w>', function()
+              local harpoon_remove = function()
                 local state = require 'telescope.actions.state'
                 local selected_entry = state.get_selected_entry()
                 local current_picker = state.get_current_picker(prompt_bufnr)
-
                 table.remove(harpoon_files.items, selected_entry.index)
                 current_picker:refresh(make_finder())
-              end)
+              end
+
+              -- Set keymap for removing file from Harpoon
+              map('i', '<C-w>', harpoon_remove)
               return true
             end,
           })
@@ -84,7 +89,7 @@ return {
           function()
             require('harpoon'):list():select(index)
           end,
-          desc = 'Select File ' .. index,
+          desc = 'File [' .. index .. ']',
         })
       end
       return mappings
