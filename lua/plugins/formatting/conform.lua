@@ -1,6 +1,9 @@
 return {
   { -- Autoformat
     'stevearc/conform.nvim',
+    -- NOTE: This change is breaking:
+    --  https://github.com/stevearc/conform.nvim/commit/584adfe7c665827601f4245c0c40273e8bc9e7cb
+    tag = 'v5.8.0',
     event = { 'BufWritePre' },
     cmd = { 'ConformInfo' },
     keys = {
@@ -28,7 +31,7 @@ return {
       formatters_by_ft = {
         lua = { 'stylua' },
         -- Conform can also run multiple formatters sequentially
-        python = { 'ruff_fix', 'ruff_format' },
+        python = { 'ruff_organize_imports', 'ruff_format' },
         --
         -- You can use a sub-list to tell conform to run *until* a formatter
         -- is found.
@@ -40,12 +43,13 @@ return {
         markdown = { 'prettier' },
         cpp = { 'clang_format' },
       },
-      formatters = {
-        ruff_fix = {
-          -- Always orgnize imports
-          prepend_args = { '--extend-select', 'I' },
-        },
-      },
+      -- NOTE: This is legacy after `ruff_organize_imports` formatter
+      -- formatters = {
+      --   ruff_fix = {
+      --     -- Always orgnize imports
+      --     prepend_args = { '--extend-select', 'I' },
+      --   },
+      -- },
     },
   },
 }
