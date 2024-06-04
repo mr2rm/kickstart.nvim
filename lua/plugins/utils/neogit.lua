@@ -1,6 +1,9 @@
 return {
   { -- Neogit
     'NeogitOrg/neogit',
+    -- NOTE: This change is breaking:
+    --  https://github.com/NeogitOrg/neogit/commit/f0cd768765e56259180eb68bc95488af933a4908
+    tag = 'v1.0.0',
     dependencies = {
       'nvim-lua/plenary.nvim', -- required
       'sindrets/diffview.nvim', -- optional - Diff integration
