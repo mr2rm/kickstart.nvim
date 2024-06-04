@@ -201,10 +201,9 @@ vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower win
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- Enable Inlay Hints and provide a keymap to toggle it
-vim.lsp.inlay_hint.enable(true)
 vim.keymap.set('n', '<leader>H', function()
-  local is_enabled = vim.lsp.inlay_hint.is_enabled()
-  vim.lsp.inlay_hint.enable(not is_enabled)
+  local is_enabled = vim.lsp.inlay_hint.is_enabled(0)
+  vim.lsp.inlay_hint.enable(0, not is_enabled)
 end, { desc = 'Toggle Inlay [H]int' })
 
 -- [[ Basic Autocommands ]]
