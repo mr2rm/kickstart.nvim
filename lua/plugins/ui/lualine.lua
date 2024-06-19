@@ -22,7 +22,7 @@ local function trunc(trunc_width, trunc_len, hide_width, no_ellipsis)
 end
 
 local function get_active_venv()
-  local venv = require('venv-selector').get_active_venv()
+  local venv = require('venv-selector').venv()
   if venv then
     local venv_parts = vim.fn.split(venv, '/')
     local venv_name = venv_parts[#venv_parts]

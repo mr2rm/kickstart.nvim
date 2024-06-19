@@ -3,23 +3,28 @@ return {
     'linux-cultist/venv-selector.nvim',
     dependencies = {
       'neovim/nvim-lspconfig',
-      'nvim-telescope/telescope.nvim',
-      'mfussenegger/nvim-dap-python',
+      'mfussenegger/nvim-dap',
+      'mfussenegger/nvim-dap-python', -- optional
+      {
+        'nvim-telescope/telescope.nvim',
+        branch = '0.1.x',
+        dependencies = { 'nvim-lua/plenary.nvim' },
+      },
     },
+    -- This is the regexp branch, use this for the new version
+    branch = 'regexp',
     cmd = 'VenvSelect',
     ft = { 'python' },
     opts = {
-      -- Your options go here
-      -- name = "venv",
-      auto_refresh = true,
+      settings = {
+        options = {
+          notify_user_on_venv_activation = true,
+        },
+      },
     },
-    -- Optional: needed only if you want to type `:VenvSelect` without a keymapping
-    -- event = 'VeryLazy',
     keys = {
       -- Keymap to open VenvSelector to pick a venv.
-      { '<leader>vs', '<cmd>VenvSelect<cr>', desc = '[S]elect' },
-      -- Keymap to retrieve the venv from a cache (the one previously used for the same project directory).
-      { '<leader>vc', '<cmd>VenvSelectCached<cr>', desc = '[C]ached' },
+      { '<leader>vs', '<cmd>VenvSelect<cr>', desc = '[S]elect', ft = { 'python' } },
     },
   },
 }
