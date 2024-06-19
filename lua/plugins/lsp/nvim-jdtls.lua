@@ -32,11 +32,6 @@ end
 
 return {
   'mfussenegger/nvim-jdtls',
-  dependencies = {
-    -- Show LSP status on statusline
-    -- TODO: Replace it with newer version of Trouble
-    'nvim-lua/lsp-status.nvim',
-  },
   ft = java_filetypes,
   opts = {
     cmd = { vim.fn.expand '~/.local/share/nvim/mason/bin/jdtls' },
@@ -51,8 +46,6 @@ return {
     },
   },
   config = function(_, opts)
-    local lsp_status = require 'lsp-status'
-
     local function attach_jdtls()
       local fname = vim.api.nvim_buf_get_name(0)
 
@@ -61,9 +54,7 @@ return {
       require('jdtls').start_or_attach {
         cmd = get_full_cmd(opts.cmd, fname),
         root_dir = get_root_dir(fname),
-        on_attach = lsp_status.on_attach,
         capabilities = {
-          unpack(lsp_status.capabilities),
           unpack(require('cmp_nvim_lsp').default_capabilities()), -- CMP capabilities
         },
         settings = opts.settings,

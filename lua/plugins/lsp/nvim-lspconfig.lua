@@ -22,10 +22,6 @@ return {
       -- used for completion, annotations and signatures of Neovim apis
       { 'folke/neodev.nvim', opts = {} },
 
-      -- Show LSP status on statusline
-      -- TODO: Replace it with newer version of Trouble
-      'nvim-lua/lsp-status.nvim',
-
       -- Load JSON schemas for yamlls
       {
         'b0o/SchemaStore.nvim',
@@ -156,8 +152,6 @@ return {
       -- NOTE: For running servers in containers you can follow this guide:
       --  https://github.com/neovim/nvim-lspconfig/wiki/Running-language-servers-in-containers
 
-      local lsp_status = require 'lsp-status'
-
       local servers = {
         -- gopls = {},
         -- rust_analyzer = {},
@@ -184,8 +178,6 @@ return {
               -- diagnostics = { disable = { 'missing-fields' } },
             },
           },
-          on_attach = lsp_status.on_attach,
-          capabilities = lsp_status.capabilities,
         },
 
         -- Python
@@ -196,9 +188,7 @@ return {
               disableOrganizeImports = true,
             },
           },
-          on_attach = lsp_status.on_attach,
           capabilities = {
-            unpack(lsp_status.capabilities),
             textDocument = {
               publishDiagnostics = {
                 tagSupport = {
@@ -221,38 +211,25 @@ return {
 
         -- C/C++
         clangd = {
-          on_attach = lsp_status.on_attach,
           capabilities = {
-            unpack(lsp_status.capabilities),
             offsetEncoding = { 'utf-16' },
           },
         },
 
         -- Docker
-        dockerls = {
-          on_attach = lsp_status.on_attach,
-          capabilities = lsp_status.capabilities,
-        },
-        docker_compose_language_service = {
-          on_attach = lsp_status.on_attach,
-          capabilities = lsp_status.capabilities,
-        },
+        dockerls = {},
+        docker_compose_language_service = {},
 
         -- Markdown
-        marksman = {
-          on_attach = lsp_status.on_attach,
-          capabilities = lsp_status.capabilities,
-        },
+        marksman = {},
 
         -- YAML
         yamlls = {
           on_attach = function(client)
             -- Did not work in the capabilities table!
             client.server_capabilities.documentFormattingProvider = true
-            lsp_status.on_attach(client)
           end,
           capabilities = {
-            unpack(lsp_status.capabilities),
             textDocument = {
               foldingRange = {
                 dynamicRegistration = false,

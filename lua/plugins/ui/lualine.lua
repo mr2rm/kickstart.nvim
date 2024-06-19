@@ -30,6 +30,20 @@ local function get_active_venv()
   end
 end
 
+local function trouble_component()
+  local trouble = require 'trouble'
+  return trouble.statusline {
+    mode = 'symbols',
+    groups = {},
+    title = false,
+    filter = { range = true },
+    format = '{kind_icon}{symbol.name:Normal}',
+    -- The following line is needed to fix the background color
+    -- Set it to the lualine section you want to use
+    hl_group = 'lualine_c_normal',
+  }
+end
+
 return {
   {
     'nvim-lualine/lualine.nvim',
@@ -79,6 +93,10 @@ return {
           lualine_c = {
             { 'filetype', icon_only = true, separator = '', padding = { left = 1, right = 0 }, fmt = trunc(nil, 20, 100, false) },
             { 'filename', fmt = trunc(nil, 20, 100, false) },
+            {
+              trouble_component().get,
+              cond = trouble_component().has,
+            },
           },
           lualine_x = {
             {
@@ -106,8 +124,6 @@ return {
           },
           -- NOTE: This section needs some improvements
           lualine_y = {
-            -- TODO: Use Trouble instead of lsp-status
-            { "require('lsp-status').status()", fmt = trunc(nil, nil, 100, false) },
             {
               'diagnostics',
               symbols = {
