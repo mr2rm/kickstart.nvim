@@ -324,14 +324,14 @@ sudo dnf install -y gcc make git ripgrep fd-find neovim
 - [x] Add notification manager to see errors
 - [x] NeoTree vs. NvimTree
 - [x] Cmdline
-- [ ] Harpoon
+- [x] Harpoon
 - [x] ~Bufferline~
 - [x] Lualine
 - [ ] Manage windows (resize, etc.)
 - [x] Folding
 - [ ] Auto save?
 - [ ] Toggleterm (for Lazygit?, Lazydocker, terminal management)
-- [ ] Trouble (waiting for version 3)
+- [x] Trouble
 - [ ] CopilotChat
 - [ ] DAP (remotly)
 - [ ] Neotest (remotely)
