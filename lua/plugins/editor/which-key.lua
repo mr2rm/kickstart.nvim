@@ -18,6 +18,7 @@ return {
         ['<leader>t'] = { name = 'File [T]ree', _ = 'which_key_ignore' },
         ['<leader>h'] = { name = '[H]arpoon', _ = 'which_key_ignore' },
         ['<leader>x'] = { name = 'Trouble', _ = 'which_key_ignore' },
+        ['<leader>a'] = { name = '[A]I', _ = 'which_key_ignore' },
       }
     end,
   },
