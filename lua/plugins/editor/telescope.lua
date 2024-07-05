@@ -156,7 +156,7 @@ return {
           attach_mappings = open_nvim_tree,
         }
       end
-      vim.keymap.set('n', '<leader>sD', find_directory_and_focus)
+      vim.keymap.set('n', '<leader>sD', find_directory_and_focus, { desc = '[S]earch [D]irectory' })
     end,
   },
 }
