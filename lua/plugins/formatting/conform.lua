@@ -1,9 +1,6 @@
 return {
   { -- Autoformat
     'stevearc/conform.nvim',
-    -- NOTE: This change is breaking:
-    --  https://github.com/stevearc/conform.nvim/commit/584adfe7c665827601f4245c0c40273e8bc9e7cb
-    tag = 'v5.8.0',
     event = { 'BufWritePre' },
     cmd = { 'ConformInfo' },
     keys = {
