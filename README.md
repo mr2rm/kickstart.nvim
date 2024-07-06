@@ -292,7 +292,7 @@ sudo dnf install -y gcc make git ripgrep fd-find neovim
 
 - [x] Remove cursor
 - [x] Preview files without opening them
-- [ ] Add more padding
+- [x] ~Add more padding~
 - [x] ~Remove hiding after opening a file~
 - [x] Focus on sidebar when it's toggled
 - [x] Enable hightlighting
@@ -304,7 +304,7 @@ sudo dnf install -y gcc make git ripgrep fd-find neovim
 
 ### Telescope
 
-- [ ] Change theme to dropdown
+- [x] Change theme to dropdown
 - [ ] Integrate with git (add some shortcuts)
 - [ ] Review configurations
 
@@ -332,7 +332,7 @@ sudo dnf install -y gcc make git ripgrep fd-find neovim
 - [ ] Auto save?
 - [ ] Toggleterm (for Lazygit?, Lazydocker, terminal management)
 - [x] Trouble
-- [ ] CopilotChat
+- [x] CopilotChat
 - [ ] DAP (remotly)
 - [ ] Neotest (remotely)
 - [ ] Refactoring
@@ -362,5 +362,5 @@ sudo dnf install -y gcc make git ripgrep fd-find neovim
 
 ### Auto-completion
 
-- [ ] Put Copilot auto-completion to the bottom?
-- [ ] <C-space> triggers incremental selection (doesn't work in Mac)
+- [x] ~Put Copilot auto-completion to the bottom~
+- [x] <C-space> triggers incremental selection (doesn't work in Mac)
