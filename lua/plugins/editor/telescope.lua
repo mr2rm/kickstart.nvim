@@ -1,4 +1,3 @@
--- TODO: Show file in file tree
 return {
   { -- Fuzzy Finder (files, lsp, etc)
     'nvim-telescope/telescope.nvim',
@@ -49,6 +48,16 @@ return {
       --
       local actions = require 'telescope.actions'
 
+      local function open_file_tree(prompt_bufnr)
+        local actions_state = require 'telescope.actions.state'
+        local api = require 'nvim-tree.api'
+
+        actions.close(prompt_bufnr)
+        local selection = actions_state.get_selected_entry()
+        api.tree.open()
+        api.tree.find_file(selection.cwd .. '/' .. selection.value)
+      end
+
       require('telescope').setup {
         -- You can put your default mappings / updates / etc. in here
         --  All the info you're looking for is in `:help telescope.setup()`
@@ -59,6 +68,13 @@ return {
         --   },
         -- },
         pickers = {
+          find_files = {
+            mappings = {
+              i = {
+                ['<C-f>'] = open_file_tree,
+              },
+            },
+          },
           buffers = {
             mappings = {
               i = {
@@ -136,23 +152,14 @@ return {
       -- Find directory and focus in Nvim-tree
       -- NOTE: Needs fd to be installed (https://github.com/sharkdp/fd)
       local function find_directory_and_focus()
-        local action_state = require 'telescope.actions.state'
-
-        local function open_nvim_tree(prompt_bufnr, _)
-          actions.select_default:replace(function()
-            local api = require 'nvim-tree.api'
-
-            actions.close(prompt_bufnr)
-            local selection = action_state.get_selected_entry()
-            api.tree.open()
-            api.tree.find_file(selection.cwd .. '/' .. selection.value)
-          end)
-          return true
-        end
-
         require('telescope.builtin').find_files {
           find_command = { 'fd', '--type', 'directory', '--exclude', '.git/*' },
-          attach_mappings = open_nvim_tree,
+          attach_mappings = function(prompt_bufnr, _)
+            actions.select_default:replace(function()
+              open_file_tree(prompt_bufnr)
+            end)
+            return true
+          end,
         }
       end
       vim.keymap.set('n', '<leader>sD', find_directory_and_focus, { desc = '[S]earch [D]irectory' })
