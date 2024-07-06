@@ -1,7 +1,6 @@
 -- TODO: Show file in file tree
 return {
   { -- Fuzzy Finder (files, lsp, etc)
-    --  TODO: How <M-q> keymap works in Telescope?
     'nvim-telescope/telescope.nvim',
     event = 'VimEnter',
     branch = '0.1.x',

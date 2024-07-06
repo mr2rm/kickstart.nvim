@@ -80,8 +80,6 @@ return {
           -- Manually trigger a completion from nvim-cmp.
           --  Generally you don't need this, because nvim-cmp will display
           --  completions whenever it has completion options available.
-          -- TODO: This doesn't not work in Mac (conflict with system shortcut)
-          -- TODO: It also has conflict with incremental selection shortcut
           ['<C-Space>'] = cmp.mapping.complete {},
 
           -- Think of <c-l> as moving to the right of your snippet expansion.
