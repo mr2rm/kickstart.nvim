@@ -24,7 +24,7 @@ return {
       },
     },
     keys = {
-      { '<leader>gg', '<cmd>Neogit<CR>', desc = 'Neo[G]it' },
+      { '<leader>gg', '<cmd>Neogit<CR>', desc = 'Neogit' },
     },
   },
 }

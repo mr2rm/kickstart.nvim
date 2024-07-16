@@ -12,6 +12,10 @@ return {
         untracked = { text = '▎' },
       },
       on_attach = function(buffer)
+        require('which-key').add {
+          { '<leader>gh', desc = '[H]unk' },
+        }
+
         local gs = package.loaded.gitsigns
 
         local function map(mode, l, r, desc)

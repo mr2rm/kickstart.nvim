@@ -82,7 +82,7 @@ return {
         local which_key = require 'which-key'
 
         -- Normal mode mappings
-        which_key.register({
+        which_key.add({
           ['<leader>cx'] = { name = '+E[x]tract' },
           ['<leader>cxv'] = { require('jdtls').extract_variable_all, 'Extract [V]ariable' },
           ['<leader>cxc'] = { require('jdtls').extract_constant, 'Extract [C]onstant' },
@@ -92,7 +92,7 @@ return {
         }, { mode = 'n', buffer = args.buf })
 
         -- Visual mode mappings
-        which_key.register({
+        which_key.add({
           ['<leader>c'] = { name = '+[C]ode' },
           ['<leader>cx'] = { name = '+E[x]tract' },
           ['<leader>cxm'] = {
