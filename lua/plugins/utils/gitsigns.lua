@@ -13,7 +13,7 @@ return {
       },
       on_attach = function(buffer)
         require('which-key').add {
-          { '<leader>gh', desc = '[H]unk' },
+          { '<leader>gh', desc = '[H]unk (Gitsigns)' },
         }
 
         local gs = package.loaded.gitsigns
@@ -36,6 +36,9 @@ return {
         map('n', '<leader>ghb', function()
           gs.blame_line { full = true }
         end, '[B]lame Line')
+        map('n', '<leader>ghB', function()
+          gs.blame()
+        end, '[B]lame Buffer')
         map('n', '<leader>ghd', gs.diffthis, '[D]iff This')
         map('n', '<leader>ghD', function()
           gs.diffthis '~'
