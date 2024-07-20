@@ -288,25 +288,15 @@ sudo dnf install -y gcc make git ripgrep fd-find neovim
 
 ## TODO
 
-### NvimTree
-
-- [x] Remove cursor
-- [x] Preview files without opening them
-- [x] ~Add more padding~
-- [x] ~Remove hiding after opening a file~
-- [x] Focus on sidebar when it's toggled
-- [x] Enable hightlighting
-
-### Treesitter
-
-- [x] Configure textobjects
-- [x] Configure context
-
 ### Telescope
 
 - [x] Change theme to dropdown
-- [ ] Integrate with git (add some shortcuts)
+- [ ] Integrate with git
+  - https://www.lazyvim.org/extras/editor/telescope#telescopenvim
+  - https://github.com/nvim-telescope/telescope.nvim?tab=readme-ov-file#git-pickers
+  - `git_files`
 - [ ] Review configurations
+- [ ] Search hidden and ignored files
 
 ### Neovim Setup
 
@@ -315,6 +305,9 @@ sudo dnf install -y gcc make git ripgrep fd-find neovim
 - [x] Enable hotkey in Kitty
 - [x] Configure Kitty
 - [x] ~Vexplore and Sexplore in Neovim~
+- [ ] Create a new repository
+- [ ] Keymap for switch to another buffer
+- [ ] Keep copied value in clipboard
 
 ### Plugins
 
@@ -330,12 +323,13 @@ sudo dnf install -y gcc make git ripgrep fd-find neovim
 - [ ] Manage windows (resize, etc.)
 - [x] Folding
 - [ ] Auto save?
-- [ ] Toggleterm (for Lazygit?, Lazydocker, terminal management)
+- [x] ~Toggleterm (for Lazygit?, Lazydocker, terminal management)~
 - [x] Trouble
 - [x] CopilotChat
 - [ ] DAP (remotly)
 - [ ] Neotest (remotely)
 - [ ] Refactoring
+- [ ] Undotree (telescope-undo.nvim)
 
 ### Git
 
@@ -349,18 +343,23 @@ sudo dnf install -y gcc make git ripgrep fd-find neovim
 - [ ] Configure diffview
 - [x] Open/Edit from directly from Neovim
 - [x] Close LazyGit by Esc
-- [ ] Blame multiple lines / history of lines
+- [x] Blame multiple lines / history of lines
 
 ### Python
 
 - [x] Setup Python virtualenv
+- [ ] Searching workspace symbols does not work for `tests` directory
+- [ ] LSP rename doesn't work on tests
+
+### Harpoon
+
+- [ ] Sometimes files are not persisted between sessions
 
 ### Markdown
 
 - [x] Live preview in browser
 - [ ] Show with style (headlines)
 
-### Auto-completion
+### Which-key
 
-- [x] ~Put Copilot auto-completion to the bottom~
-- [x] <C-space> triggers incremental selection (doesn't work in Mac)
+- [ ] Resolve conflicts and errors (mostly in mini plugins)
