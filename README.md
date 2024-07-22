@@ -345,12 +345,6 @@ sudo dnf install -y gcc make git ripgrep fd-find neovim
 - [x] Close LazyGit by Esc
 - [x] Blame multiple lines / history of lines
 
-### Python
-
-- [x] Setup Python virtualenv
-- [ ] Searching workspace symbols does not work for `tests` directory
-- [ ] LSP rename doesn't work on tests
-
 ### Harpoon
 
 - [ ] Sometimes files are not persisted between sessions
