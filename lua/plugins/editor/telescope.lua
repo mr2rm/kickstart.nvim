@@ -46,16 +46,26 @@ return {
       -- [[ Configure Telescope ]]
       -- See `:help telescope` and `:help telescope.setup()`
       --
+      local builtin = require 'telescope.builtin'
       local actions = require 'telescope.actions'
+      local actions_state = require 'telescope.actions.state'
 
-      local function open_file_tree(prompt_bufnr)
-        local actions_state = require 'telescope.actions.state'
-        local api = require 'nvim-tree.api'
-
+      local file_tree_focus = function(prompt_bufnr)
+        local nvim_tree = require 'nvim-tree.api'
         actions.close(prompt_bufnr)
         local selection = actions_state.get_selected_entry()
-        api.tree.open()
-        api.tree.find_file(selection.cwd .. '/' .. selection.value)
+        nvim_tree.tree.open()
+        nvim_tree.tree.find_file(selection.cwd .. '/' .. selection.value)
+      end
+
+      local find_hidden_files = function()
+        local current_line = actions_state.get_current_line()
+        return builtin.find_files { hidden = true, default_text = current_line }
+      end
+
+      local find_ignore_files = function()
+        local current_line = actions_state.get_current_line()
+        return builtin.find_files { no_ignore = true, default_text = current_line }
       end
 
       require('telescope').setup {
@@ -71,7 +81,9 @@ return {
           find_files = {
             mappings = {
               i = {
-                ['<C-f>'] = open_file_tree,
+                ['<C-h>'] = find_hidden_files,
+                ['<C-g>'] = find_ignore_files,
+                ['<C-f>'] = file_tree_focus,
               },
             },
           },
@@ -89,6 +101,7 @@ return {
           },
         },
         defaults = {
+          file_ignore_patterns = { '.git/' },
           sorting_strategy = 'ascending',
           layout_strategy = 'flex',
           layout_config = {
@@ -114,7 +127,6 @@ return {
       -- pcall(require('telescope').load_extension, 'lazygit')
 
       -- See `:help telescope.builtin`
-      local builtin = require 'telescope.builtin'
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
       vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
@@ -152,11 +164,11 @@ return {
       -- Find directory and focus in Nvim-tree
       -- NOTE: Needs fd to be installed (https://github.com/sharkdp/fd)
       local function find_directory_and_focus()
-        require('telescope.builtin').find_files {
-          find_command = { 'fd', '--type', 'directory', '--exclude', '.git/*' },
+        builtin.find_files {
+          find_command = { 'fd', '--type', 'directory' },
           attach_mappings = function(prompt_bufnr, _)
             actions.select_default:replace(function()
-              open_file_tree(prompt_bufnr)
+              file_tree_focus(prompt_bufnr)
             end)
             return true
           end,
