@@ -1,22 +1,24 @@
--- TODO: There are some overlapping keymaps on health-checking
+-- FIXME: There are some overlapping keymaps on health-checking
 return {
   { -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
     event = 'VeryLazy',
     opts = {
       spec = {
-        { '<leader>a', group = '[A]I' },
-        { '<leader>c', group = '[C]ode' },
-        { '<leader>d', group = '[D]ocument' },
-        { '<leader>g', group = '[G]it' },
-        { '<leader>h', group = '[H]arpoon' },
-        { '<leader>n', group = '[N]otification' },
-        { '<leader>r', group = '[R]ename' },
-        { '<leader>s', group = '[S]earch' },
-        { '<leader>t', group = 'File [T]ree' },
+        { '<leader>a', group = '[A]I', icon = { icon = '', color = 'gray' } },
+        { '<leader>c', group = '[C]ode', icon = { icon = '', color = 'gray' } },
+        { '<leader>g', group = '[G]it', icon = { icon = '󰊢', color = 'gray' } },
+        { '<leader>h', group = '[H]arpoon', icon = { icon = '󱡀', color = 'gray' } },
+        { '<leader>n', group = '[N]otification', icon = { icon = '󰈸', color = 'gray' } },
+        { '<leader>r', group = '[R]ename', icon = { icon = '', color = 'gray' } },
+        { '<leader>s', group = '[S]earch', icon = { icon = '', color = 'gray' } },
+        { '<leader>t', group = 'File [T]ree', icon = { icon = '', color = 'gray' } },
+        { '<leader>x', group = 'Trouble', icon = { icon = '󰙅', color = 'gray' } },
+        -- FIXME: Goes to visual mode instead of Venv
         { '<leader>v', group = '[V]env' },
+        -- TODO: Create a group for LSP
         { '<leader>w', group = '[W]orkspace' },
-        { '<leader>x', group = 'Trouble' },
+        { '<leader>d', group = '[D]ocument' },
       },
     },
     keys = {
@@ -25,7 +27,7 @@ return {
         function()
           require('which-key').show { global = false }
         end,
-        desc = 'Buffer Local Keymaps (which-key)',
+        desc = 'Buffer Local Keymaps',
       },
     },
   },
