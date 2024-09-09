@@ -296,7 +296,8 @@ sudo dnf install -y gcc make git ripgrep fd-find neovim
   - https://github.com/nvim-telescope/telescope.nvim?tab=readme-ov-file#git-pickers
   - `git_files`
 - [ ] Review configurations
-- [ ] Search hidden and ignored files
+- [x] Search hidden and ignored files
+- [ ] Check if realted LSP keymaps can be moved to Telescope configuration
 
 ### Neovim Setup
 
@@ -330,6 +331,8 @@ sudo dnf install -y gcc make git ripgrep fd-find neovim
 - [ ] Neotest (remotely)
 - [ ] Refactoring
 - [ ] Undotree (telescope-undo.nvim)
+- [ ] Customize welcome page
+- [ ] Add dictionary to check typos
 
 ### Git
 
@@ -357,3 +360,4 @@ sudo dnf install -y gcc make git ripgrep fd-find neovim
 ### Which-key
 
 - [ ] Resolve conflicts and errors (mostly in mini plugins)
+- [ ] Add icons to keymaps
