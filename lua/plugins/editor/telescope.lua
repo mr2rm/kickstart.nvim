@@ -1,8 +1,6 @@
 -- TODO: Search relative to open buffer
 --  Use `require('telescope.utils').buffer_dir()` for `cwd` on `live_grep` and etc.
 
--- TODO: Use prefix for search commands in which-key and remove [S]earch from description
-
 return {
   { -- Fuzzy Finder (files, lsp, etc)
     'nvim-telescope/telescope.nvim',
@@ -55,7 +53,7 @@ return {
       local actions = require 'telescope.actions'
       local actions_state = require 'telescope.actions.state'
 
-      local find_in_file_tree = function(prompt_bufnr)
+      local show_in_file_tree = function(prompt_bufnr)
         local nvim_tree = require 'nvim-tree.api'
         actions.close(prompt_bufnr)
         local selection = actions_state.get_selected_entry()
@@ -88,7 +86,7 @@ return {
               i = {
                 ['<C-h>'] = find_hidden_files,
                 ['<C-g>'] = find_ignore_files,
-                ['<C-f>'] = find_in_file_tree,
+                ['<C-f>'] = show_in_file_tree,
               },
             },
           },
@@ -132,24 +130,25 @@ return {
 
       -- Find directory and focus in Nvim-tree
       -- NOTE: Needs fd to be installed (https://github.com/sharkdp/fd)
-      vim.keymap.set('n', '<leader>fd', function()
+      vim.keymap.set('n', '<leader>sF', function()
         builtin.find_files {
+          prompt_title = 'Find Folders',
           find_command = { 'fd', '--type', 'directory' },
           attach_mappings = function(prompt_bufnr, _)
             actions.select_default:replace(function()
-              find_in_file_tree(prompt_bufnr)
+              show_in_file_tree(prompt_bufnr)
             end)
             return true
           end,
         }
-      end, { desc = '[F]ind [D]irectory' })
+      end, { desc = '[F]olders' })
     end,
     keys = { -- See `:help telescope.builtin`
       -- Grep String
       { -- TODO: <leader>sG -> CWD ({ root = false })
         '<leader>sg',
         '<cmd>Telescope live_grep<cr>', -- builtin.live_grep,
-        desc = '[S]earch by [G]rep',
+        desc = '[G]rep All',
       },
       {
         -- It's also possible to pass additional configuration options.
@@ -161,7 +160,7 @@ return {
             prompt_title = 'Live Grep in Open Files',
           }
         end,
-        desc = '[S]earch by Grep in Open Files',
+        desc = 'Grep Open Files',
       },
       {
         -- Slightly advanced example of overriding default behavior and theme
@@ -174,28 +173,28 @@ return {
           }
           require('telescope.builtin').current_buffer_fuzzy_find(dropdown)
         end,
-        desc = '[S]earch by Grep in Current Buffer',
+        desc = 'Grep Current Buffer',
       },
-      { '<leader>sw', '<cmd>Telescope grep_string word_match=-w<cr>', desc = '[S]earch [W]ord' },
-      { '<leader>sw', '<cmd>Telescope grep_string<cr>', mode = 'v', desc = '[S]earch Selection' },
+      { '<leader>sw', '<cmd>Telescope grep_string word_match=-w<cr>', desc = '[W]ord' },
+      { '<leader>sw', '<cmd>Telescope grep_string<cr>', mode = 'v', desc = 'Selection' },
 
       -- Find Files
       { -- TODO: <leader>fR -> CWD ({ cwd = vim.uv.cwd() })
         '<leader>.', -- <leader>sr, <leader>fr
         '<cmd>Telescope oldfiles<cr>', -- builtin.oldfiles
-        desc = '[R]ecent Files',
+        desc = 'Recent Files',
       },
       {
         '<leader>sf', -- <leader><space>
         '<cmd>Telescope find_files<cr>', -- builtin.find_files,
-        desc = '[S]earch [F]iles',
+        desc = '[F]iles',
       },
       { -- Shortcut for searching your Neovim configuration files
         '<leader>sn', -- <leader>fc
         function()
           require('telescope.builtin').find_files { cwd = vim.fn.stdpath 'config' }
         end,
-        desc = '[S]earch [N]eovim Files',
+        desc = '[N]eovim Files',
       },
       {
         '<leader><leader>', -- <leader>, <leader>fb
@@ -208,23 +207,23 @@ return {
       {
         '<leader>sr', -- <leader>sR
         '<cmd>Telescope resume<cr>', -- builtin.resume
-        desc = '[S]earch [R]esume',
+        desc = '[R]esume',
       },
       {
         '<leader>sh',
         '<cmd>Telescope help_tags<cr>', -- builtin.help_tags
-        desc = '[S]earch [H]elp Pages',
+        desc = '[H]elp Pages',
       },
       {
         '<leader>sk',
         '<cmd>Telescope keymaps<cr>', -- builtin.keymaps
-        desc = '[S]earch [K]eymaps',
+        desc = '[K]eymaps',
       },
-      { '<leader>sd', '<cmd>Telescope diagnostics bufnr=0<cr>', desc = '[S]earch Document [D]iagnostics' },
+      { '<leader>sd', '<cmd>Telescope diagnostics bufnr=0<cr>', desc = 'Document [D]iagnostics' },
       {
         '<leader>sD',
         '<cmd>Telescope diagnostics<cr>', -- builtin.diagnostics
-        desc = '[S]earch Workspace [D]iagnostics',
+        desc = 'Workspace [D]iagnostics',
       },
     },
   },
