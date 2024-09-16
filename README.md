@@ -307,8 +307,10 @@ sudo dnf install -y gcc make git ripgrep fd-find neovim
 - [x] Configure Kitty
 - [x] ~Vexplore and Sexplore in Neovim~
 - [ ] Create a new repository
+- [ ] Move options and keymaps to `globals` module
 - [ ] Keymap for switch to another buffer
 - [ ] Keep copied value in clipboard
+- [x] Enable spell checking
 
 ### Plugins
 
