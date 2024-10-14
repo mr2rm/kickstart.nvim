@@ -2,7 +2,7 @@ local java_filetypes = { 'java' }
 
 -- Find the root dir of the project for a given file
 local function get_root_dir(fname)
-  local jdtls = require 'lspconfig.server_configurations.jdtls'
+  local jdtls = require 'lspconfig.configs.jdtls'
   return jdtls.default_config.root_dir(fname)
 end
 
