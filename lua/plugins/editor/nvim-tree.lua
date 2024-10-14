@@ -34,9 +34,9 @@ return { -- File Tree
       view = {
         signcolumn = 'auto',
         preserve_window_proportions = true,
-        adaptive_size = true,
       },
       renderer = {
+        full_name = true,
         highlight_git = 'all',
         highlight_diagnostics = 'all',
         highlight_modified = 'all',
@@ -45,7 +45,9 @@ return { -- File Tree
           enable = true,
         },
         icons = {
-          git_placement = 'after',
+          git_placement = 'right_align',
+          modified_placement = 'right_align',
+          diagnostics_placement = 'right_align',
         },
       },
       filters = {
