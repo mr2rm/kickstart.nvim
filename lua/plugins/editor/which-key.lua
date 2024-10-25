@@ -14,6 +14,7 @@ return {
         { '<leader>s', group = '[S]earch', icon = { icon = '', color = 'gray' } },
         { '<leader>t', group = 'File [T]ree', icon = { icon = '', color = 'gray' } },
         { '<leader>x', group = 'Trouble', icon = { icon = '󰙅', color = 'gray' } },
+        { '<leader>k', group = '[K]eymaps', icon = { icon = '󰌌', color = 'gray' } },
         -- FIXME: Goes to visual mode instead of Venv
         { '<leader>v', group = '[V]env' },
         -- TODO: Create a group for LSP
