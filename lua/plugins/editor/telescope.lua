@@ -202,6 +202,18 @@ return {
         desc = 'Switch Buffer',
       },
 
+      -- Todo Comments
+      {
+        '<leader>st',
+        '<cmd>TodoTelescope<cr>',
+        desc = '[T]odo List',
+      },
+      {
+        '<leader>sT',
+        '<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>',
+        desc = '[T]odo Fix List',
+      },
+
       -- Misc
       { '<leader>:', '<cmd>Telescope command_history<cr>', desc = 'Command History' },
       {

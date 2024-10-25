@@ -42,6 +42,18 @@ return {
         end,
         desc = 'Next Quickfix Item',
       },
+
+      -- Todo Comments
+      {
+        '<leader>xt',
+        '<cmd>Trouble todo<cr>',
+        desc = '[T]odo List',
+      },
+      {
+        '<leader>xT',
+        '<cmd>Trouble todo filter = {tag = {TODO, FIX, FIXME}}<cr>',
+        desc = '[T]odo Fix List',
+      },
     },
   },
 }
