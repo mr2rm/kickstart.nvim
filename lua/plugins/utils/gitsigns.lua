@@ -1,7 +1,9 @@
+local LazyFile = require('utils').LazyFile
+
 return {
   { -- Gitsigns
     'lewis6991/gitsigns.nvim',
-    event = vim.g.LazyFile,
+    event = LazyFile,
     opts = {
       signs = {
         add = { text = '▎' },

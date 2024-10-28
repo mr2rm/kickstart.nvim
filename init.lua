@@ -86,8 +86,6 @@ P.S. You can delete this when you're done too. It's your config now! :)
 
 require 'globals'
 
-vim.g.LazyFile = { 'BufReadPost', 'BufWritePost', 'BufNewFile' }
-
 -- NOTE: Hijack `netrw` in favor of `neo-tree`
 -- Disable netrw at the very start of your init.lua
 vim.g.loaded_netrw = 1
