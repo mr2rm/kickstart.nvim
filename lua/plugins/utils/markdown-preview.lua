@@ -7,10 +7,10 @@ return {
     end,
     keys = {
       {
-        '<leader>mp',
+        '<leader>p',
         ft = 'markdown',
         '<cmd>MarkdownPreviewToggle<cr>',
-        desc = 'Toggle [M]arkdown [P]review',
+        desc = 'Toggle [P]review',
       },
     },
     config = function()
