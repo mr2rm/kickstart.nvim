@@ -73,41 +73,40 @@ return {
 
     -- Add mappings
     vim.api.nvim_create_autocmd('LspAttach', {
-      callback = function(args)
-        local client = vim.lsp.get_client_by_id(args.data.client_id)
+      callback = function(event)
+        local client = vim.lsp.get_client_by_id(event.data.client_id)
         if client == nil or client.name ~= 'jdtls' then
           return
         end
 
         local which_key = require 'which-key'
+        local jdtls = require 'jdtls'
+        local lsp_mapping = require('utils').lsp_mapping
+
+        -- TODO: Merge normal and visual mode mappings
+        --  https://github.com/folke/which-key.nvim?tab=readme-ov-file#%EF%B8%8F-mappings
 
         -- Normal mode mappings
         which_key.add({
-          ['<leader>cx'] = { name = '+E[x]tract' },
-          ['<leader>cxv'] = { require('jdtls').extract_variable_all, 'Extract [V]ariable' },
-          ['<leader>cxc'] = { require('jdtls').extract_constant, 'Extract [C]onstant' },
-          ['gs'] = { require('jdtls').super_implementation, 'LSP: [G]oto [S]uper' },
-          ['gS'] = { require('jdtls.tests').goto_subjects, 'LSP: [G]oto [S]ubjects' },
-          ['<leader>co'] = { require('jdtls').organize_imports, '[O]rganize Imports' },
-        }, { mode = 'n', buffer = args.buf })
+          -- NOTE: LSP mappings
+          lsp_mapping('gs', jdtls.super_implementation, '[G]oto [S]uper'),
+          lsp_mapping('gS', require('jdtls.tests').goto_subjects, '[G]oto [S]ubjects'),
+
+          -- NOTE: Code mappings
+          { '<leader>cx', name = '+E[x]tract' },
+          { '<leader>cxv', jdtls.extract_variable_all, desc = 'Extract [V]ariable' },
+          { '<leader>cxc', jdtls.extract_constant, desc = 'Extract [C]onstant' },
+          { '<leader>co', jdtls.organize_imports, desc = '[O]rganize Imports' },
+        }, { mode = 'n', buffer = event.buf })
 
         -- Visual mode mappings
         which_key.add({
-          ['<leader>c'] = { name = '+[C]ode' },
-          ['<leader>cx'] = { name = '+E[x]tract' },
-          ['<leader>cxm'] = {
-            [[<ESC><CMD>lua require('jdtls').extract_method(true)<CR>]],
-            'Extract [M]ethod',
-          },
-          ['<leader>cxv'] = {
-            [[<ESC><CMD>lua require('jdtls').extract_variable_all(true)<CR>]],
-            'Extract [V]ariable',
-          },
-          ['<leader>cxc'] = {
-            [[<ESC><CMD>lua require('jdtls').extract_constant(true)<CR>]],
-            'Extract [C]onstant',
-          },
-        }, { mode = 'v', buffer = args.buf })
+          { '<leader>c', name = '+[C]ode' },
+          { '<leader>cx', name = '+E[x]tract' },
+          { '<leader>cxm', [[<ESC><CMD>lua require('jdtls').extract_method(true)<CR>]], desc = 'Extract [M]ethod' },
+          { '<leader>cxv', [[<ESC><CMD>lua require('jdtls').extract_variable_all(true)<CR>]], desc = 'Extract [V]ariable' },
+          { '<leader>cxc', [[<ESC><CMD>lua require('jdtls').extract_constant(true)<CR>]], desc = 'Extract [C]onstant' },
+        }, { mode = 'v', buffer = event.buf })
       end,
     })
   end,
