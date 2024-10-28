@@ -17,9 +17,6 @@ return {
         { '<leader>k', group = '[K]eymaps', icon = { icon = '󰌌', color = 'gray' } },
         -- FIXME: Goes to visual mode instead of Venv
         { '<leader>v', group = '[V]env' },
-        -- TODO: Create a group for LSP
-        { '<leader>w', group = '[W]orkspace' },
-        { '<leader>d', group = '[D]ocument' },
       },
     },
     keys = {

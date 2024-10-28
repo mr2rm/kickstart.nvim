@@ -29,8 +29,8 @@ return {
       -- attach cmp source whenever copilot attaches
       -- fixes lazy-loading issues with the copilot cmp source
       vim.api.nvim_create_autocmd('LspAttach', {
-        callback = function(args)
-          local client = vim.lsp.get_client_by_id(args.data.client_id)
+        callback = function(event)
+          local client = vim.lsp.get_client_by_id(event.data.client_id)
           if client.name == 'copilot' then
             copilot_cmp._on_insert_enter {}
           end
