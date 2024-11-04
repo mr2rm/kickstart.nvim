@@ -106,13 +106,13 @@ return {
             --  Most Language Servers support renaming across files, etc.
             { '<leader>cr', vim.lsp.buf.rename, desc = '[R]ename' },
 
-            -- Fuzzy find all the symbols in your current document.
-            --  Symbols are things like variables, functions, types, etc.
-            { '<leader>cs', telescope_builtin.lsp_document_symbols, desc = 'Document [S]ymbols' },
-
             -- Fuzzy find all the symbols in your current workspace.
             --  Similar to document symbols, except searches over your entire project.
-            { '<leader>cS', telescope_builtin.lsp_dynamic_workspace_symbols, desc = 'Workspace [S]ymbols' },
+            { '<leader>cs', telescope_builtin.lsp_dynamic_workspace_symbols, desc = 'Workspace [S]ymbols' },
+
+            -- Fuzzy find all the symbols in your current document.
+            --  Symbols are things like variables, functions, types, etc.
+            { '<leader>cS', telescope_builtin.lsp_document_symbols, desc = 'Document [S]ymbols' },
           }, { mode = 'n', buffer = event.buf })
 
           -- The following two autocommands are used to highlight references of the
