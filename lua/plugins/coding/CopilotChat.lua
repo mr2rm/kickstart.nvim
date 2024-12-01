@@ -12,7 +12,7 @@ return {
       local user = vim.env.USER or 'User'
       user = user:sub(1, 1):upper() .. user:sub(2)
       return {
-        model = 'gpt-4',
+        model = 'gpt-4o',
         auto_insert_mode = true,
         show_help = true,
         question_header = '  ' .. user .. ' ',
@@ -20,6 +20,7 @@ return {
         window = {
           width = 0.4,
         },
+        chat_autocomplete = true,
         selection = function(source)
           local select = require 'CopilotChat.select'
           return select.visual(source) or select.buffer(source)
@@ -75,7 +76,6 @@ return {
     },
     config = function(_, opts)
       local chat = require 'CopilotChat'
-      require('CopilotChat.integrations.cmp').setup()
 
       vim.api.nvim_create_autocmd('BufEnter', {
         pattern = 'copilot-chat',
