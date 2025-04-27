@@ -17,7 +17,7 @@ vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Scroll [U]p' })
 
 -- NOTE: Keep search term in the middle of screen always
 vim.keymap.set('n', 'n', 'nzzzv', { desc = '[N]ext Occurrence' })
-vim.keymap.set('n', 'N', 'nzzzv', { desc = 'Previous Occurrence' })
+vim.keymap.set('n', 'N', 'Nzzzv', { desc = 'Previous Occurrence' })
 
 -- NOTE: Pasting or deleting to void register
 vim.keymap.set('x', '<leader>kp', '"_dP', { desc = 'Preserved [P]aste' })
